@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>To-Do List</title>
+    <style>
+        body {
+            background-color: #1a1a2e;
+            color: white;
+            font-family: Arial;
+            text-align: center;
+        }
+
+        h1 {
+            color: #e94560;
+            margin-top: 50px;
+        }
+
+        input {
+            padding: 10px;
+            width: 300px;
+            border-radius: 5px;
+            border: none;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #e94560;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        li {
+            list-style: none;
+            background-color: #16213e;
+            margin: 10px auto;
+            padding: 10px;
+            width: 300px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        li button {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            float: right;
+            font-size: 16px;
+        }
+
+        .termine {
+            text-decoration: line-through;
+            color: #a8a8b3;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Ma To-Do List 📝</h1>
+    <input id="tache" placeholder="Ajouter une tâche..." />
+    <button onclick="ajouterTache()">Ajouter</button>
+    <ul id="liste"></ul>
+
+    <script>
+        function ajouterTache() {
+            let tache = document.getElementById("tache").value;
+
+            if (tache === "") {
+                alert("Écris une tâche! ✋");
+                return;
+            }
+
+            let li = document.createElement("li");
+            li.innerText = tache;
+
+            li.onclick = function () {
+                li.classList.toggle("termine");
+            };
+
+            let btnSupprimer = document.createElement("button");
+            btnSupprimer.innerText = "❌";
+            btnSupprimer.onclick = function (e) {
+                e.stopPropagation();
+                li.remove();
+            };
+
+            li.appendChild(btnSupprimer);
+            document.getElementById("liste").appendChild(li);
+            document.getElementById("tache").value = "";
+        }
+    </script>
+</body>
+
+</html>
